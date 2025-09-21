@@ -23,7 +23,7 @@
        "@/styles/*": ["styles/*"],
       "@/components/*": ["components/*"]
     },
-    "baseUrl": "src/",
+    "baseUrl": ".",
 
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
