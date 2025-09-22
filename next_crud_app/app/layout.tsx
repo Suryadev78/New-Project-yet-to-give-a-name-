@@ -1,8 +1,35 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { AnimeNavBar } from "@/components/ui/anime-navbar";
-import { Items } from "@/items";
+// import { AnimeNavBar } from "@/components/ui/anime-navbar";
+// import { Items } from "@/items";
+// import { NavigationMenu } from "@/components/ui/navigation-menu";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+} from "@/components/ui/8bit/navigation-menu"
+import { Link } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+
+
+interface Item {
+  title: string;
+  href: string;
+}
+
+const items : Item[] = [
+  {title:"Home", href:"/"},
+  {title:"Add-Product",href:"/add-product"},
+  {title:"Products",href:"/products"}
+]
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +56,34 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AnimeNavBar items={Items} defaultActive="Home" />
+        {}
+        {/* <AnimeNavBar items={Items} defaultActive="Home" /> */}
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between px-30 ">
+          <div>
+            logo
+
+          </div>
+
+          <div className="flex gap-6">
+
+        {items.map((item)=>{
+          return (
+            <NavigationMenu key={item.title}>
+  <NavigationMenuList>
+    <NavigationMenuItem>
+      <Button className="cursor-pointer"> {item.title} </Button>
+     
+    </NavigationMenuItem>
+  </NavigationMenuList>
+</NavigationMenu>
+
+          )
+        })}
+          </div>
+
+        </div>
+      
+
         {children}
       </body>
     </html>
