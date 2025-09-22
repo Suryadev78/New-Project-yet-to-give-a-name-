@@ -1,46 +1,29 @@
-  import { StackProvider, StackTheme } from "@stackframe/stack";
+import { StackProvider, StackTheme } from "@stackframe/stack";
 import { stackServerApp } from "../stack/server";
 import type { Metadata } from "next";
   import { Geist, Geist_Mono } from "next/font/google";
   import "./globals.css";
-  // import { AnimeNavBar } from "@/components/ui/anime-navbar";
-  // import { Items } from "@/items";
-  // import { NavigationMenu } from "@/components/ui/navigation-menu";
+  import { Button2 } from "@/components/ui/8bit/button";
   import { ThemeProvider } from "@/components/theme-provider"
-  import {
-    NavigationMenu,
-    NavigationMenuContent,
-    NavigationMenuIndicator,
-    NavigationMenuItem,
-    NavigationMenuLink,
-    NavigationMenuList,
-    NavigationMenuTrigger,
-    NavigationMenuViewport,
-  } from "@/components/ui/8bit/navigation-menu"
-  import { Link } from "lucide-react";
-  import Image from "next/image";
-  import { Button } from "@/components/ui/button";
-  import { ModeToggle } from "@/components/modtoggle";
-
-
-
+import { Navbar } from "@/components/navbar";
+  
   interface Item {
     title: string;
     href: string;
   }
-
+  
   const items : Item[] = [
     {title:"Home", href:"/"},
     {title:"Add-Product",href:"/add-product"},
     {title:"Products",href:"/products"}
   ]
-
-
+  
+  
   const geistSans = Geist({
     variable: "--font-geist-sans",
     subsets: ["latin"],
   });
-
+  
   const geistMono = Geist_Mono({
     variable: "--font-geist-mono",
     subsets: ["latin"],
@@ -55,7 +38,8 @@ import type { Metadata } from "next";
     children,
   }: Readonly<{
     children: React.ReactNode;
-  }>) {
+  }>)
+   {
     return (
       <html lang="en" suppressHydrationWarning>
         <body
@@ -69,52 +53,18 @@ import type { Metadata } from "next";
         >
 
           <div className="min-h-screen w-full relative">
-  {/* Background */}
   <div
     className="absolute inset-0 z-0  bg-[radial-gradient(125%_125%_at_50%_10%,_#ffffff_40%,_#7c3aed_100%)]
     dark:bg-[radial-gradient(125%_125%_at_50%_100%,_#000000_40%,_#010133_100%)]"
-    
   />
-
-  {/* Content above background */}
   <div className="relative z-10">
-    <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      {/* Logo */}
-      <div>
-        <Image
-          className="rounded-2xl"
-          src="/logo.png"
-          alt="Logo"
-          width={50}
-          height={50}
-        />
-      </div>
-
-      {/* Nav + Toggle */}
-      <div className="flex gap-6 items-center">
-        {items.map((item) => (
-          <NavigationMenu key={item.title}>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <Button className="cursor-pointer">{item.title}</Button>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
-        ))}
-        <ModeToggle />
-      </div>
-    </div>
-
-    {/* Page content */}
+  <Navbar/>
     {children}
   </div>
 </div>
-
-          </ThemeProvider>
-        </StackTheme></StackProvider></body>
-      </html>
-    );
-  }
-
-  // Radial Gradient Background from Top */}
+</ThemeProvider>
+</StackTheme></StackProvider></body>
+</html>
+);
+}
   
